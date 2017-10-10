@@ -21,11 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define VENDOR_ID       0xF0BA
 #define PRODUCT_ID      0xBB00
-#define MANUFACTURER    scuzz
+#define MANUFACTURER    mtfurlan
 #define DEVICE_VER      0x0001
-#define PRODUCT         scuzz keyboard
+#define PRODUCT         t61 usb keyboard
 
-#define DESCRIPTION     t60
+#define DESCRIPTION     t61
 
 /* matrix size */
 #define MATRIX_ROWS 16
