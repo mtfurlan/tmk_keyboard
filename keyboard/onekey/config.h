@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x1112
-#define DEVICE_VER      0x0002
+#define PRODUCT_ID      0x1111
+#define DEVICE_VER      0x0001
 #define MANUFACTURER    geekhack
 #define PRODUCT         Onekey
 #define DESCRIPTION     t.m.k. keyboard firmware for Onekey

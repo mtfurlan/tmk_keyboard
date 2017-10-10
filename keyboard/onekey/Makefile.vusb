@@ -20,8 +20,7 @@ CONFIG_H = config.h
 # type "make clean" after changing this, so all files will be rebuilt
 #MCU = atmega168p
 #MCU = atmega328p
-#MCU = attiny85
-MCU = atmega32u4
+MCU = attiny85
 
 
 # Processor frequency.
@@ -31,7 +30,7 @@ MCU = atmega32u4
 #   examples use this variable to calculate timings.  Do not add a "UL" here.
 #F_CPU = 12000000
 # Xtal-less internal RC oscillator
-F_CPU = 16000000
+F_CPU = 16500000
 
 
 # Build Options
@@ -51,8 +50,9 @@ OPT_DEFS += -DNO_ACTION_MACRO
 #---------------- Programming Options --------------------------
 AVRDUDE = avrdude
 # Type: avrdude -c ? to get a full listing.
-AVRDUDE_PROGRAMMER = avr109
-AVRDUDE_PORT = /dev/ttyACM2
+#AVRDUDE_PROGRAMMER = usbasp
+AVRDUDE_PROGRAMMER = avrispmkii
+AVRDUDE_PORT =
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
 
@@ -84,7 +84,7 @@ PROGRAM_CMD = $(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE
 #   Atmel DFU loader 4096
 #   LUFA bootloader  4096
 #   USBasp           2048
-OPT_DEFS += -DBOOTLOADER_SIZE=512
+OPT_DEFS += -DBOOTLOADER_SIZE=2048
 
 
 # Search Path
