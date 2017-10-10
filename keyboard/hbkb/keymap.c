@@ -51,7 +51,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 8 col
  * 16 row
  * TRANSPOSE THIS
- *    |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      10 |      12 |      13 |      14 |      15
+ * X means not done this time around
+ *    |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |      X9 |      10 |      10 |     X12 |     X13 |      14 |      15
  * ---+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------
  *  0 | `       | F1      | F2      | 5       | 6       | =       | F8      | -       | F9      | INSERT  | Delete  | PageUp  | Home    |         |         | L_CTRL
  *  1 | 1       | 2       | 3       | 4       | 7       | 8       | 9       | 0       | F10     | F12     | F11     | PgDn    | End     | PrntScr |         |
@@ -120,36 +121,36 @@ static const uint8_t PROGMEM fn_keycode[] = {
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {
-         {KC_GRV, KC_1, KC_Q, KC_TAB, KC_A, KC_ESC, KC_Z, KC_NO},
-         {KC_F1, KC_2, KC_W, KC_CAPS, KC_S, KC_NO, KC_X, KC_NO},
-         {KC_F2, KC_3, KC_E, KC_F3, KC_D, KC_F4, KC_C, KC_NO},
-         {KC_5, KC_4, KC_R, KC_T, KC_F, KC_G, KC_V, KC_B},
-         {KC_6, KC_7, KC_U, KC_Y, KC_J, KC_H, KC_M, KC_N},
-         {KC_EQL, KC_8, KC_I, KC_RBRC, KC_K, KC_F6, KC_COMM, KC_NO},
-         {KC_F8, KC_9, KC_O, KC_F7, KC_L, KC_NO, KC_DOT, KC_NO},
-         {KC_MINS, KC_O, KC_P, KC_LBRC, KC_SCLN, KC_QUOT, KC_NO, KC_PSLS},
-         {KC_F9, KC_F10, KC_NO, KC_BSPC, KC_BSLS, KC_F5, KC_ENT, KC_SPC},
-         {KC_INS, KC_F12, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_RIGHT},
-         {KC_DEL, KC_F11, KC_VOLU, KC_VOLD, KC_MUTE, KC_NO, KC_NO, KC_DOWN},
-         {KC_PGUP, KC_PGDN, KC_LGUI, KC_NO, KC_RGUI, KC_NO, KC_WBAK, KC_WFWD},
-         {KC_HOME, KC_END, KC_NO, KC_NO, KC_NO, KC_UP, KC_PAUSE, KC_LEFT},
-         {KC_NO, KC_PSCR, KC_SLCK, KC_NO, KC_NO, KC_LALT, KC_NO, KC_RALT},
-         {KC_NO, KC_NO, KC_NO, KC_LSFT, KC_NO, KC_NO, KC_RSFT, KC_NO},
-         {KC_LCTL, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_RCTL, KC_N}
+/* 00 */ {KC_GRV,	    KC_1,	    KC_Q,	    KC_TAB,	    KC_A,	    KC_ESC,	    KC_Z,	    KC_NO},
+/* 01 */ {KC_F1,	    KC_2,	    KC_W,	    KC_CAPS,    KC_S,	    KC_NO,	    KC_X,	    KC_NO},
+/* 02 */ {KC_F2,	    KC_3,	    KC_E,	    KC_F3,	    KC_D,	    KC_F4,	    KC_C,	    KC_NO},
+/* 03 */ {KC_5,	        KC_4,	    KC_R,	    KC_T,	    KC_F,	    KC_G,	    KC_V,	    KC_B},
+/* 04 */ {KC_6,	        KC_7,	    KC_U,	    KC_Y,	    KC_J,	    KC_H,	    KC_M,	    KC_N},
+/* 05 */ {KC_EQL,	    KC_8,	    KC_I,	    KC_RBRC,    KC_K,	    KC_F6,	    KC_COMM,	KC_NO},
+/* 06 */ {KC_F8,	    KC_9,	    KC_O,	    KC_F7,	    KC_L,	    KC_NO,	    KC_DOT,	    KC_NO},
+/* 07 */ {KC_MINS,	    KC_O,	    KC_P,	    KC_LBRC,    KC_SCLN,    KC_QUOT,    KC_NO,	    KC_PSLS},
+/* 08 */ {KC_F9,	    KC_F10,	    KC_NO,	    KC_BSPC,    KC_BSLS,    KC_F5,	    KC_ENT,	    KC_SPC},
+/* 09 */ {KC_INS,	    KC_F12,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_RIGHT},
+/* 10 */ {KC_DEL,	    KC_F11,	    KC_VOLU,    KC_VOLD,    KC_MUTE,    KC_NO,	    KC_NO,	    KC_DOWN},
+/* 11 */ {KC_PGUP,	    KC_PGDN,    KC_LGUI,    KC_NO,	    KC_RGUI,    KC_NO,	    KC_WBAK,	KC_WFWD},
+/* 12 */ {KC_HOME,	    KC_END,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_UP,	    KC_PAUSE,	KC_LEFT},
+/* 13 */ {KC_NO,	    KC_PSCR,    KC_SLCK,    KC_NO,	    KC_NO,	    KC_LALT,    KC_NO,	    KC_RALT},
+/* 14 */ {KC_NO,	    KC_NO,	    KC_NO,	    KC_LSFT,    KC_NO,	    KC_NO,	    KC_RSFT,	KC_NO},
+/* 15 */ {KC_LCTL,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_NO,	    KC_RCTL,	KC_N}
      }
-    /* Layer 0: Default Layer
-     * ,-----------------------------------------------------------.
-     * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  \|  `|
-     * |-----------------------------------------------------------|
-     * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]| BS  |
-     * |-----------------------------------------------------------|
-     * |Contro|  A|  S|  D|  F|  G|  H|  J|  K|  L|Fn3|  '|Return  |
-     * |-----------------------------------------------------------|
-     * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|Fn2|Shift     |
-     * |-----------------------------------------------------------|
-     * |Ctrl |   |Alt  |           Fn4             |Alt  |   |Fn1  |
-     * `-----'   `---------------------------------------'   `-----'
-     */
+//    /* Layer 0: Default Layer
+//     * ,-----------------------------------------------------------.
+//     * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  \|  `|
+//     * |-----------------------------------------------------------|
+//     * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]| BS  |
+//     * |-----------------------------------------------------------|
+//     * |Contro|  A|  S|  D|  F|  G|  H|  J|  K|  L|Fn3|  '|Return  |
+//     * |-----------------------------------------------------------|
+//     * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|Fn2|Shift     |
+//     * |-----------------------------------------------------------|
+//     * |Ctrl |   |Alt  |           Fn4             |Alt  |   |Fn1  |
+//     * `-----'   `---------------------------------------'   `-----'
+//     */
 //    KEYMAP(ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSLS,GRV, \
 //           TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSPC, \
 //           LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   FN3, QUOT,ENT, \
