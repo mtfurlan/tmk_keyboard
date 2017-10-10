@@ -26,11 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /*
- * Happy Buckling Keyboard(IBM Model M mod)
+ * T60 stuff
  *
  * Pin usage:
  *   COL: PD0-7
  *   ROW: PB0-7, PF4-7
+ *
+ *   COL: 8
+ *   ROW: 16
  */
 #ifndef DEBOUNCE
 #   define DEBOUNCE	10

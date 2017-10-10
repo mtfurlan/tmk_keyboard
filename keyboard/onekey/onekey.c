@@ -43,13 +43,13 @@ void matrix_init(void)
     debug_mouse = true;
 
     // PB0: Input with pull-up(DDR:0, PORT:1)
-    DDRB  &= ~(1<<0);
-    PORTB |=  (1<<0);
+    DDRB  &= ~(1<<1);
+    PORTB |=  (1<<1);
 }
 
 uint8_t matrix_scan(void)
 {
-    matrix_row_t r = (PINB&(1<<0) ? 0 : 1);
+    matrix_row_t r = (PINB&(1<<1) ? 0 : 1);
     if (row_debouncing != r) {
         row_debouncing = r;
         debouncing = true;
