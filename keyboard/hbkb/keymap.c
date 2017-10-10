@@ -28,60 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keymap.h"
 
 
-/*
- * ,---.                              ,-----------. ,--------------.
- * |Esc| mut|vd | vu|thinkvantage     |prt|scr|pau| |ins|home|pgpu |
- * |-------------. ,-------------.  ,--------------| |-------------|
- * | f1| f2|f3|f4| |f5| f6| f7|f8|  |f9|f10|f11|f12| |del|end |pgdn|
- * |---------------------------------------------------------------|
- * |` |  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|backspace   |
- * |-----------------------------------------------------------|
- * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]| \   |
- * |-----------------------------------------------------------|
- * |EscCap|  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Return  |
- * |-----------------------------------------------------------|
- * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift     |
- * |-----------------------------------------------------------|
- * |Fn|Ctrl|GUI|Alt|           Space    |Alt|men|ctr|bac|up|for|
- * `-------------------------------------------------lef|dn|rig|
- *                                                   `---------'
- *
- *
- * Matrix: 16x8
- * 8 col
- * 16 row
- * TRANSPOSE THIS
- *    |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      10 |      12 |      13 |      14 |      15
- * ---+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------
- *  0 | `       | F1      | F2      | 5       | 6       | =       | F8      | -       | F9      | INSERT  | Delete  | PageUp  | Home    |         |         | L_CTRL
- *  1 | 1       | 2       | 3       | 4       | 7       | 8       | 9       | 0       | F10     | F12     | F11     | PgDn    | End     | PrntScr |         |
- *  2 | q       | w       | e       | r       | u       | i       | o       | p       |         |         | VolUp   | L_GUI   |         | ScrLck  |         |
- *  3 | Tab     | CapsLck | F3      | t       | y       | ]       | F7      | [       | Backspac|         | VolDown |         |         |         | L_SHIFT |
- *  4 | a       | s       | d       | f       | j       | k       | l       | ;       | \       |         | Mute    | R_GUI   |         |         |         |
- *  5 | Esc     |         | F4      | g       | h       | F6      |         | '       | F5      |         | thinkVan|         | Up      | L_ALT   |         |
- *  6 | z       | x       | c       | v       | m       | ,       | .       |         | Return  |         |         | Prev    | Pause   |         | R_SHIFT | R_CTRL
- *  7 |         |         |         | b       | n       |         |         | /       | ' '     | R_ARROW | D_ARROW | Next    | L_ARROW | R_ALT   |         |
- *  Transposition thanks to Max: https://pastebin.com/raw/525Q7N7B
- *
- *  Original matrix here: https://github.com/rampadc/arduino-thinkpadkb-usb/blob/master/MicroThinkPadAdapter/MicroThinkPadAdapter.ino#L78
- *  And here: https://flashandrc.files.wordpress.com/2014/08/fil3zp5hw4ojq7d-large.jpg
- *
- * TRANSPOSE THIS
- *    |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      10 |      12 |      13 |      14 |      15
- * ---+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------
- *  0 | `       | F1      | F2      | 5       | 6       | =       | F8      | -       | F9      | INSERT  | Delete  | PageUp  | Home    |         |         | CapsLock
- *  1 | 1       | 2       | 3       | 4       | 7       | 8       | 9       | 0       | F10     | F12     | F11     | PgDn    | End     | PrntScr |         |
- *  2 | q       | w       | e       | r       | u       | i       | o       | p       |         |         | VolUp   | L_GUI   |         | ScrLck  |         |
- *  3 | Tab     | L_CTRL  | F3      | t       | y       | ]       | F7      | [       | \       |         | VolDown |         |         |         | L_SHIFT |
- *  4 | a       | s       | d       | f       | j       | k       | l       | ;       | BackSpac|         | Mute    | R_GUI   |         |         |         |
- *  5 | Esc     |         | F4      | g       | h       | F6      |         | '       | F5      |         | thinkVan|         | Up      | L_ALT   |         |
- *  6 | z       | x       | c       | v       | m       | ,       | .       |         | Return  |         |         | Prev    | Pause   |         | R_SHIFT | R_CTRL
- *  7 |         |         |         | b       | n       |         |         | /       | ' '     | R_ARROW | D_ARROW | Next    | L_ARROW | R_ALT   |         |
- *  fn is some funky shit
- *  alt is meta keys
- *  Pinout of connector: https://cdn.instructables.com/ORIG/FHW/IFU1/HUFW65MQ/FHWIFU1HUFW65MQ.png
- *
- */
 #define KEYMAP( \
     K22, K23, K33, K43, K53, K52, K72, K73, K83, K93, KA3, KA2, K82, K64, K61, \
     K21, K24, K34, K44, K54, K51, K71, K74, K84, K94, KA4, KA1, K81, K65, \
@@ -131,8 +77,64 @@ static const uint8_t PROGMEM fn_keycode[] = {
     KC_NO           // Fn7
 };
 
+/*
+ * ,---.                              ,-----------. ,--------------.
+ * |Esc| mut|vd | vu|thinkvantage     |prt|scr|pau| |ins|home|pgpu |
+ * |-------------. ,-------------.  ,--------------| |-------------|
+ * | f1| f2|f3|f4| |f5| f6| f7|f8|  |f9|f10|f11|f12| |del|end |pgdn|
+ * |---------------------------------------------------------------|
+ * |` |  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|backspace   |
+ * |-----------------------------------------------------------|
+ * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]| \   |
+ * |-----------------------------------------------------------|
+ * |EscCap|  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Return  |
+ * |-----------------------------------------------------------|
+ * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift     |
+ * |-----------------------------------------------------------|
+ * |Fn|Ctrl|sup|Alt|           Space    |Alt|men|ctr|bac|up|for|
+ * `-------------------------------------------------lef|dn|rig|
+ *                                                   `---------'
+ *
+ *
+ * Matrix: 16x8
+ * 8 col
+ * 16 row
+ * TRANSPOSE THIS
+ *    |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      10 |      12 |      13 |      14 |      15
+ * ---+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------
+ *  0 | `       | F1      | F2      | 5       | 6       | =       | F8      | -       | F9      | INSERT  | Delete  | PageUp  | Home    |         |         | L_CTRL
+ *  1 | 1       | 2       | 3       | 4       | 7       | 8       | 9       | 0       | F10     | F12     | F11     | PgDn    | End     | PrntScr |         |
+ *  2 | q       | w       | e       | r       | u       | i       | o       | p       |         |         | VolUp   | L_GUI   |         | ScrLck  |         |
+ *  3 | Tab     | CapsLck | F3      | t       | y       | ]       | F7      | [       | Backspac|         | VolDown |         |         |         | L_SHIFT |
+ *  4 | a       | s       | d       | f       | j       | k       | l       | ;       | \       |         | Mute    | R_GUI   |         |         |         |
+ *  5 | Esc     |         | F4      | g       | h       | F6      |         | '       | F5      |         | thinkVan|         | Up      | L_ALT   |         |
+ *  6 | z       | x       | c       | v       | m       | ,       | .       |         | Return  |         |         | Prev    | Pause   |         | R_SHIFT | R_CTRL
+ *  7 |         |         |         | b       | n       |         |         | /       | ' '     | R_ARROW | D_ARROW | Next    | L_ARROW | R_ALT   |         |
+ *  Transposition thanks to Max: https://pastebin.com/raw/525Q7N7B
+ *
+ *  Original matrix here: https://github.com/rampadc/arduino-thinkpadkb-usb/blob/master/MicroThinkPadAdapter/MicroThinkPadAdapter.ino#L78
+ *  And here: https://flashandrc.files.wordpress.com/2014/08/fil3zp5hw4ojq7d-large.jpg
+ *
+ * TRANSPOSE THIS
+ *    |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      10 |      12 |      13 |      14 |      15
+ * ---+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------
+ *  0 | `       | F1      | F2      | 5       | 6       | =       | F8      | -       | F9      | INSERT  | Delete  | PageUp  | Home    |         |         | CapsLock
+ *  1 | 1       | 2       | 3       | 4       | 7       | 8       | 9       | 0       | F10     | F12     | F11     | PgDn    | End     | PrntScr |         |
+ *  2 | q       | w       | e       | r       | u       | i       | o       | p       |         |         | VolUp   | L_GUI   |         | ScrLck  |         |
+ *  3 | Tab     | L_CTRL  | F3      | t       | y       | ]       | F7      | [       | \       |         | VolDown |         |         |         | L_SHIFT |
+ *  4 | a       | s       | d       | f       | j       | k       | l       | ;       | BackSpac|         | Mute    | R_GUI   |         |         |         |
+ *  5 | Esc     |         | F4      | g       | h       | F6      |         | '       | F5      |         | thinkVan|         | Up      | L_ALT   |         |
+ *  6 | z       | x       | c       | v       | m       | ,       | .       |         | Return  |         |         | Prev    | Pause   |         | R_SHIFT | R_CTRL
+ *  7 |         |         |         | b       | n       |         |         | /       | ' '     | R_ARROW | D_ARROW | Next    | L_ARROW | R_ALT   |         |
+ *  fn is some funky shit
+ *  alt is not in the keymap?
+ *  super and menu are alt.
+ *  Pinout of connector: https://cdn.instructables.com/ORIG/FHW/IFU1/HUFW65MQ/FHWIFU1HUFW65MQ.png
+ *
+ */
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {
+     //   00            01          02          03          04          05          06          07
 /* 00 */ {KC_GRV,	    KC_1,	    KC_Q,	    KC_TAB,	    KC_A,	    KC_ESC,	    KC_Z,	    KC_NO},
 /* 01 */ {KC_F1,	    KC_2,	    KC_W,	    KC_LCTL,    KC_S,	    KC_NO,	    KC_X,	    KC_NO},
 /* 02 */ {KC_F2,	    KC_3,	    KC_E,	    KC_F3,	    KC_D,	    KC_F4,	    KC_C,	    KC_NO},
