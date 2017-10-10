@@ -26,11 +26,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /*
- * Happy Buckling Keyboard(IBM Model M mod)
+ * T60 stuff
  *
  * Pin usage:
- *   COL: PD0-7
- *   ROW: PB0-7, PF4-7
+ *   COL: PB0-7
+ *   ROW:
+ *      D 0,1,2,3,4; 6,7
+ *      F 0,1; 4,5,6,7
+ *      C 6,7
+ *      E 6
+ *
+ *   COL: 8
+ *   ROW: 16
+ *   https://cdn.instructables.com/ORIG/FG4/BSFY/HUFW65ZZ/FG4BSFYHUFW65ZZ.png
  */
 #ifndef DEBOUNCE
 #   define DEBOUNCE	10
@@ -56,8 +64,8 @@ void matrix_init(void)
     unselect_rows();
 
     // initialize columns to input with pull-up(DDR:0, PORT:1)
-    DDRD = 0x00;
-    PORTD = 0xFF;
+    DDRB = 0x00;
+    PORTB = 0xFF;
 
     // initialize matrix state: all keys off
     for (uint8_t i=0; i < MATRIX_ROWS; i++) {
@@ -104,44 +112,76 @@ matrix_row_t matrix_get_row(uint8_t row)
 inline
 static matrix_row_t read_cols(void)
 {
-    return ~PIND;
+    return ~PINB;
 }
 
 inline
 static void unselect_rows(void)
 {
     // Hi-Z(DDR:0, PORT:0) to unselect
-    DDRB  &= ~0b11111111;
-    PORTB &= ~0b11111111;
-    DDRF  &= ~0b11110000;
-    PORTF &= ~0b11110000;
+    // D 0,1,2,3,4; 6,7
+    // F 0,1; 4,5,6,7
+    // C 6,7
+    // E 6
+    DDRD  &= ~0b11011111;
+    PORTD &= ~0b11011111;
+    DDRF  &= ~0b11110011;
+    PORTF &= ~0b11110011;
+    DDRC  &= ~0b11000000;
+    PORTC &= ~0b11000000;
+    DDRE  &= ~0b01000000;
+    PORTE &= ~0b01000000;
 }
 
 inline
 static void select_row(uint8_t row)
 {
     // Output low(DDR:1, PORT:0) to select
+    // D 0,1,2,3,4; 6,7
+    // F 0,1; 4,5,6,7
+    // C 6,7
+    // E 6
+    //
+    // 0-4: D0-D4
+    // 5-6: D6-7
+    // 7-8: F0-1
+    // 9-12: F4-7
+    // 13-14: C6-7
+    // 15: E6
     switch (row) {
         case 0:
         case 1:
         case 2:
         case 3:
         case 4:
+            DDRD  |=  (1<<row);
+            PORTD &= ~(1<<row);
+            break;
         case 5:
         case 6:
-        case 7:
-            DDRB  |=  (1<<row);
-            PORTB &= ~(1<<row);
+            DDRD  |=  (1<<row+1);
+            PORTD &= ~(1<<row+1);
             break;
+        case 7:
         case 8:
-            DDRF  |=  (1<<4);
-            PORTF &= ~(1<<4);
+            DDRF  |=  (1<<row-7);
+            PORTF &= ~(1<<row-7);
             break;
         case 9:
         case 10:
         case 11:
-            DDRF  |=  (1<<(row-4));
-            PORTF &= ~(1<<(row-4));
+        case 12:
+            DDRF  |=  (1<<(row-5));
+            PORTF &= ~(1<<(row-5));
+            break;
+        case 13:
+        case 14:
+            DDRC  |=  (1<<(row-7));
+            PORTC &= ~(1<<(row-7));
+            break;
+        case 15:
+            DDRE  |=  (1<<6);
+            PORTE &= ~(1<<6);
             break;
     }
 }

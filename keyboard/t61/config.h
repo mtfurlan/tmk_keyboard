@@ -19,16 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_H
 
 
-#define VENDOR_ID       0xFEED
+#define VENDOR_ID       0xF0BA
 #define PRODUCT_ID      0xBB00
-#define MANUFACTURER    t.m.k.
-#define DEVICE_VER      0x0100
-#define PRODUCT         Happy Buckling Keyboard
+#define MANUFACTURER    scuzz
+#define DEVICE_VER      0x0001
+#define PRODUCT         scuzz keyboard
 
-#define DESCRIPTION     mod version of IBM Model M keyboard
+#define DESCRIPTION     t60
 
 /* matrix size */
-#define MATRIX_ROWS 12
+#define MATRIX_ROWS 16
 #define MATRIX_COLS 8
 
 /* define if matrix has ghost */
